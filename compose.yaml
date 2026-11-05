@@ -1,0 +1,15 @@
+
+services:
+  agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    environment:
+    #fourni par docker pour contacter un service sur la machine hôte depuis le conteneur docker
+      OLLAMA_HOST: ${OLLAMA_HOST_DOCKER:-http://host.docker.internal:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen3:8b}
+      
+
+    stdin_open: true
+    tty: true

@@ -1,0 +1,16 @@
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "time-series-agent"
+version = "0.1.0"
+description = "Conversational agent for time series analysis"
+requires-python = ">=3.14"
+dependencies = [
+    "ollama>=0.4",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
