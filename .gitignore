@@ -95,3 +95,10 @@ desktop.ini
 # Docker local overrides
 # ==========================================
 docker-compose.override.yml
+
+
+# ==========================================
+# Datasets
+# ==========================================
+data/raw/ 
+data/processed/
