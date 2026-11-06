@@ -602,6 +602,253 @@ Once implemented, the agent should support requests such as:
 
 The agent will interpret these requests and execute the appropriate analytical tools.
 
+---
+
+## Python Dependency Management with uv
+
+To ensure that all team members use consistent Python and library versions, this project uses **uv** for dependency management.
+
+`uv` manages Python environments, installs dependencies, and generates a lockfile (`uv.lock`) to make installations reproducible across different machines.
+
+### 1. Install uv
+
+**Ubuntu / WSL / Linux / macOS:**
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+**Windows PowerShell:**
+
+```powershell
+irm https://astral.sh/uv/install.ps1 | iex
+```
+
+Restart your terminal and verify the installation:
+
+```bash
+uv --version
+```
+
+Official documentation: https://docs.astral.sh/uv/
+
+### 2. Clone the Repository
+
+If you have not cloned the project yet:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/time-series-agent.git
+cd time-series-agent
+```
+
+Replace `YOUR_USERNAME` with the repository owner's GitHub username.
+
+### 3. Set the Python Version
+
+The project uses a shared Python version defined in `.python-version`.
+
+The project maintainer can create this file with:
+
+```bash
+uv python pin 3.14
+```
+
+This example uses Python 3.14. Before adopting it, ensure that all project dependencies support this version.
+
+The `requires-python` field in `pyproject.toml` must also be compatible with the selected version.
+
+**Other contributors should not change `.python-version` independently.** They should use the version committed to the repository.
+
+To install the required Python version:
+
+```bash
+uv python install
+```
+
+### 4. Create and Synchronize the Environment
+
+The repository contains two important files:
+
+| File | Purpose |
+|---|---|
+| `pyproject.toml` | Declares the project's dependencies and Python requirements |
+| `uv.lock` | Records the resolved dependency versions |
+| `.python-version` | Specifies the project's Python version |
+
+If the project already contains `uv.lock`, install the locked dependencies with:
+
+```bash
+uv sync --locked
+```
+
+If the project has not yet generated a lockfile, the maintainer should run:
+
+```bash
+uv sync
+```
+
+This creates or updates `uv.lock` and prepares the `.venv` environment.
+
+**Commit `uv.lock` to GitHub, but never commit `.venv/`.**
+
+### 5. Add a New Library
+
+When a contributor needs a new Python library, they must use `uv add`.
+
+For example:
+
+```bash
+uv add polars
+```
+
+For development-only dependencies, such as testing tools:
+
+```bash
+uv add --dev pytest
+```
+
+These commands update `pyproject.toml` and `uv.lock`.
+
+Commit both files:
+
+```bash
+git add pyproject.toml uv.lock
+git commit -m "chore: update Python dependencies"
+git push
+```
+
+**Do not use `pip install` to add project dependencies**, because it does not automatically update the shared dependency declarations.
+
+### 6. Update Your Local Environment
+
+Whenever another contributor adds or updates dependencies, first pull the latest changes:
+
+```bash
+git pull
+```
+
+Then synchronize your environment:
+
+```bash
+uv sync --locked
+```
+
+This ensures your environment follows the versions recorded in the repository's lockfile.
+
+### 7. Run Python Commands with uv
+
+Use `uv run` to execute commands inside the project's managed environment.
+
+Run the application:
+
+```bash
+uv run python main.py
+```
+
+Run all tests:
+
+```bash
+uv run pytest
+```
+
+Run a specific test file:
+
+```bash
+uv run pytest tests/test_services.py
+```
+
+Run Streamlit:
+
+```bash
+uv run streamlit run app/streamlit_app.py
+```
+
+### 8. Update or Remove Dependencies
+
+To update one dependency:
+
+```bash
+uv lock --upgrade-package polars
+uv sync
+```
+
+To remove a dependency:
+
+```bash
+uv remove polars
+```
+
+After changing dependencies, commit the updated files:
+
+```bash
+git add pyproject.toml uv.lock
+git commit -m "chore: update dependencies"
+git push
+```
+
+Dependency updates should be reviewed and tested before merging into the `main` branch.
+
+### 9. Git Configuration
+
+Make sure `.gitignore` includes:
+
+```gitignore
+.venv/
+__pycache__/
+.env
+```
+
+The following files **must be committed**:
+
+```text
+pyproject.toml
+uv.lock
+.python-version
+```
+
+### 10. Team Workflow Summary
+
+**When joining the project for the first time:**
+
+```bash
+git clone https://github.com/YOUR_USERNAME/time-series-agent.git
+cd time-series-agent
+uv sync --locked
+```
+
+**Before starting a new work session:**
+
+```bash
+git pull
+uv sync --locked
+```
+
+**When adding a new dependency:**
+
+```bash
+uv add PACKAGE_NAME
+git add pyproject.toml uv.lock
+git commit -m "chore: add dependency"
+git push
+```
+
+**When running the project:**
+
+```bash
+uv run python main.py
+```
+
+### Important Team Rules
+
+1. Always use `uv add` or `uv remove` to manage project dependencies.
+2. Always commit `pyproject.toml` and `uv.lock` together when dependencies change.
+3. Never commit `.venv/`.
+4. Use the Python version specified in `.python-version`.
+5. Run `uv sync --locked` after pulling dependency changes.
+6. Test dependency updates before merging Pull Requests.
+
+**Official documentation:** https://docs.astral.sh/uv/
+
 ## 11. Tools and Services
 
 The project separates LangChain tools from Python services.
