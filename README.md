@@ -166,7 +166,7 @@ time-series-agent/
 ├── .gitignore
 ├── pyproject.toml
 ├── README.md
-└── README.fr.md
+
 ```
 
 ### Directory Responsibilities
