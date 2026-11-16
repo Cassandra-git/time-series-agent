@@ -1,4 +1,3 @@
-
 from pathlib import Path
 import math
 
@@ -11,6 +10,18 @@ SUPPORTED_FORMATS = {".csv", ".parquet", ".xlsx", ".xls"}
 
 
 
+
+
+def scan_dataset(path: str | Path) -> pl.LazyFrame:
+    """Read a Parquet dataset without assuming any column names."""
+    path = Path(path)
+
+    if path.suffix.lower() != ".parquet":
+        raise ValueError("Expected a .parquet file.")
+    if not path.is_file():
+        raise FileNotFoundError(path)
+
+    return pl.scan_parquet(path)
 
 def detect_csv_separator(file_path: str) -> str:
     """Detect the CSV separator from the header."""
