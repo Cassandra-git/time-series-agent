@@ -9,11 +9,27 @@ version = "0.1.0"
 description = "Conversational agent for time series analysis"
 requires-python = ">=3.14"
 dependencies = [
+
+    "fastexcel>=0.21.0",
+    "langchain-ollama>=1.1.0",
+    "langgraph>=1.2.20",
+    "ollama>=0.4",
+    "polar[excel]>=0.0.127",
+    "polars>=2.1.0",
     "ollama>=0.4",
     "pandas>=3.1.1",
     "plotly>=7.1.0",
     "pyarrow>=26.0.1",
+
 ]
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "xlsxwriter>=3.3.1",
+]
+

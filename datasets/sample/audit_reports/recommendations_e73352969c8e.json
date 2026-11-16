@@ -1,0 +1,1685 @@
+{
+  "dataset": "ASE4.csv",
+  "inspection_report": {
+    "file_name": "ASE4.csv",
+    "file_format": ".csv",
+    "sheet_name": null,
+    "row_count": 3719,
+    "column_count": 14,
+    "columns": [
+      {
+        "name": "date",
+        "dtype": "Datetime(time_unit='us', time_zone=None)",
+        "null_count": 0,
+        "nan_count": 0,
+        "missing_count": 0,
+        "null_percentage": 0.0,
+        "missing_run_count": 0,
+        "max_missing_run": 0
+      },
+      {
+        "name": "ASE_NO2",
+        "dtype": "Float64",
+        "null_count": 421,
+        "nan_count": 0,
+        "missing_count": 421,
+        "null_percentage": 11.32,
+        "missing_run_count": 8,
+        "min": 28886.94393,
+        "max": 29384.5625,
+        "mean": 29169.368999069127,
+        "std": 77.67232234361798,
+        "q1": 29123.42004,
+        "median": 29182.55469,
+        "q3": 29229.01746,
+        "max_missing_run": 291
+      },
+      {
+        "name": "ASE_NO",
+        "dtype": "Float64",
+        "null_count": 292,
+        "nan_count": 0,
+        "missing_count": 292,
+        "null_percentage": 7.85,
+        "missing_run_count": 2,
+        "min": 41433.17188,
+        "max": 44584.02298,
+        "mean": 41862.16351571345,
+        "std": 407.9199289237818,
+        "q1": 41589.52482,
+        "median": 41735.07813,
+        "q3": 41979.96875,
+        "max_missing_run": 291
+      },
+      {
+        "name": "ASE_CO",
+        "dtype": "Float64",
+        "null_count": 317,
+        "nan_count": 0,
+        "missing_count": 317,
+        "null_percentage": 8.52,
+        "missing_run_count": 3,
+        "min": 39658.26563,
+        "max": 43673.57077,
+        "mean": 40450.05669121105,
+        "std": 504.03605493304536,
+        "q1": 40079.36887,
+        "median": 40320.679690000004,
+        "q3": 40707.98438,
+        "max_missing_run": 291
+      },
+      {
+        "name": "ASE_Ox",
+        "dtype": "Float64",
+        "null_count": 292,
+        "nan_count": 0,
+        "missing_count": 292,
+        "null_percentage": 7.85,
+        "missing_run_count": 2,
+        "min": 28755.39338,
+        "max": 29346.26563,
+        "mean": 29108.898712979284,
+        "std": 90.16822548889401,
+        "q1": 29045.14063,
+        "median": 29107.40441,
+        "q3": 29174.85938,
+        "max_missing_run": 291
+      },
+      {
+        "name": "ASE_T",
+        "dtype": "Float64",
+        "null_count": 292,
+        "nan_count": 0,
+        "missing_count": 292,
+        "null_percentage": 7.85,
+        "missing_run_count": 2,
+        "min": 3.125047684,
+        "max": 30.12605224,
+        "mean": 13.239985913879782,
+        "std": 3.9326477705022795,
+        "q1": 10.7669693,
+        "median": 13.37859541,
+        "q3": 15.7497584,
+        "max_missing_run": 291
+      },
+      {
+        "name": "ASE_HR",
+        "dtype": "Float64",
+        "null_count": 292,
+        "nan_count": 0,
+        "missing_count": 292,
+        "null_percentage": 7.85,
+        "missing_run_count": 2,
+        "min": 16.90338496,
+        "max": 73.38559548,
+        "mean": 58.404696456011095,
+        "std": 9.541831252783846,
+        "q1": 54.59973042,
+        "median": 61.21293965,
+        "q3": 65.02889041,
+        "max_missing_run": 291
+      },
+      {
+        "name": "ASE_PA",
+        "dtype": "Float64",
+        "null_count": 292,
+        "nan_count": 0,
+        "missing_count": 292,
+        "null_percentage": 7.85,
+        "missing_run_count": 2,
+        "min": 986.4430556,
+        "max": 1838.498264,
+        "mean": 1022.6967433559381,
+        "std": 22.450674569075314,
+        "q1": 1016.070833,
+        "median": 1024.121875,
+        "q3": 1029.687847,
+        "max_missing_run": 291
+      },
+      {
+        "name": "SUD3_NO2",
+        "dtype": "Float64",
+        "null_count": 220,
+        "nan_count": 0,
+        "missing_count": 220,
+        "null_percentage": 5.92,
+        "missing_run_count": 14,
+        "min": 1.5,
+        "max": 142.6,
+        "mean": 40.27364961417549,
+        "std": 26.061209838219003,
+        "q1": 18.8,
+        "median": 35.4,
+        "q3": 55.8,
+        "max_missing_run": 194
+      },
+      {
+        "name": "SUD3_NO",
+        "dtype": "Float64",
+        "null_count": 220,
+        "nan_count": 0,
+        "missing_count": 220,
+        "null_percentage": 5.92,
+        "missing_run_count": 14,
+        "min": -1.6,
+        "max": 395.4,
+        "mean": 43.74058302372106,
+        "std": 60.3286634847254,
+        "q1": 4.7,
+        "median": 18.2,
+        "q3": 59.5,
+        "max_missing_run": 194
+      },
+      {
+        "name": "QDP_NO",
+        "dtype": "Float64",
+        "null_count": 13,
+        "nan_count": 0,
+        "missing_count": 13,
+        "null_percentage": 0.35,
+        "missing_run_count": 5,
+        "min": -0.3,
+        "max": 490.2,
+        "mean": 37.81249325418241,
+        "std": 43.91375553113321,
+        "q1": 8.7,
+        "median": 22.8,
+        "q3": 51.1,
+        "max_missing_run": 4
+      },
+      {
+        "name": "QDP_NO2",
+        "dtype": "Float64",
+        "null_count": 13,
+        "nan_count": 0,
+        "missing_count": 13,
+        "null_percentage": 0.35,
+        "missing_run_count": 5,
+        "min": 2.2,
+        "max": 119.0,
+        "mean": 38.09862385321101,
+        "std": 20.121557201980277,
+        "q1": 22.3,
+        "median": 35.3,
+        "q3": 51.5,
+        "max_missing_run": 4
+      },
+      {
+        "name": "QDP_CO",
+        "dtype": "Float64",
+        "null_count": 87,
+        "nan_count": 0,
+        "missing_count": 87,
+        "null_percentage": 2.34,
+        "missing_run_count": 15,
+        "min": 0.068,
+        "max": 1.284,
+        "mean": 0.29855947136563876,
+        "std": 0.1447970033231131,
+        "q1": 0.197,
+        "median": 0.262,
+        "q3": 0.369,
+        "max_missing_run": 38
+      },
+      {
+        "name": "Location",
+        "dtype": "String",
+        "null_count": 291,
+        "nan_count": 0,
+        "missing_count": 291,
+        "null_percentage": 7.82,
+        "missing_run_count": 1,
+        "max_missing_run": 291
+      }
+    ],
+    "temporal_columns": [
+      "date"
+    ],
+    "temporal_info": {
+      "mode": "explicit",
+      "timestamp_columns": [
+        "date"
+      ],
+      "sampling_rate_hz": null,
+      "sampling_interval_seconds": null,
+      "duration_seconds": null,
+      "requires_timestamp_generation": false
+    },
+    "duplicate_rows": null,
+    "preview": [
+      {
+        "date": "2021-10-21 09:00:00",
+        "ASE_NO2": "29260.45956",
+        "ASE_NO": "41784.20221",
+        "ASE_CO": "40379.02022",
+        "ASE_Ox": "29097.00735",
+        "ASE_T": "15.75799191",
+        "ASE_HR": "61.39632766",
+        "ASE_PA": "1010.553819",
+        "SUD3_NO2": "10.3",
+        "SUD3_NO": "3.8",
+        "QDP_NO": "12.5",
+        "QDP_NO2": "18.5",
+        "QDP_CO": "0.146",
+        "Location": "SUD3"
+      },
+      {
+        "date": "2021-10-21 10:00:00",
+        "ASE_NO2": null,
+        "ASE_NO": "41850.04167",
+        "ASE_CO": "40377.16667",
+        "ASE_Ox": "29089.9375",
+        "ASE_T": "17.22121343",
+        "ASE_HR": "59.65555301",
+        "ASE_PA": "1010.864815",
+        "SUD3_NO2": "9.2",
+        "SUD3_NO": "4.2",
+        "QDP_NO": "16.1",
+        "QDP_NO2": "19.8",
+        "QDP_CO": "0.146",
+        "Location": "SUD3"
+      },
+      {
+        "date": "2021-10-21 11:00:00",
+        "ASE_NO2": null,
+        "ASE_NO": "41810.25",
+        "ASE_CO": "40351.71875",
+        "ASE_Ox": "29047.67188",
+        "ASE_T": "16.94815747",
+        "ASE_HR": "62.82309707",
+        "ASE_PA": "1011.373264",
+        "SUD3_NO2": "12.8",
+        "SUD3_NO": "6.4",
+        "QDP_NO": "15.3",
+        "QDP_NO2": "20.1",
+        "QDP_CO": "0.147",
+        "Location": "SUD3"
+      },
+      {
+        "date": "2021-10-21 12:00:00",
+        "ASE_NO2": null,
+        "ASE_NO": "42027.21232",
+        "ASE_CO": "40504.16636",
+        "ASE_Ox": "29013.68566",
+        "ASE_T": "16.56309606",
+        "ASE_HR": "66.36657257",
+        "ASE_PA": "1012.0875",
+        "SUD3_NO2": "33.5",
+        "SUD3_NO": "33.0",
+        "QDP_NO": "42.3",
+        "QDP_NO2": "42.5",
+        "QDP_CO": "0.211",
+        "Location": "SUD3"
+      },
+      {
+        "date": "2021-10-21 13:00:00",
+        "ASE_NO2": null,
+        "ASE_NO": "42541.39063",
+        "ASE_CO": "40830.34091",
+        "ASE_Ox": "28971.16903",
+        "ASE_T": "17.32220176",
+        "ASE_HR": "66.40870134",
+        "ASE_PA": "1012.44375",
+        "SUD3_NO2": "62.6",
+        "SUD3_NO": "79.7",
+        "QDP_NO": "70.4",
+        "QDP_NO2": "53.1",
+        "QDP_CO": "0.248",
+        "Location": "SUD3"
+      }
+    ],
+    "outlier_summary": [
+      {
+        "column": "ASE_NO2",
+        "outlier_count": 43
+      },
+      {
+        "column": "ASE_NO",
+        "outlier_count": 226
+      },
+      {
+        "column": "QDP_NO",
+        "outlier_count": 227
+      },
+      {
+        "column": "QDP_NO2",
+        "outlier_count": 19
+      },
+      {
+        "column": "QDP_CO",
+        "outlier_count": 125
+      },
+      {
+        "column": "ASE_CO",
+        "outlier_count": 103
+      },
+      {
+        "column": "ASE_Ox",
+        "outlier_count": 18
+      },
+      {
+        "column": "ASE_T",
+        "outlier_count": 42
+      },
+      {
+        "column": "ASE_HR",
+        "outlier_count": 190
+      },
+      {
+        "column": "ASE_PA",
+        "outlier_count": 38
+      },
+      {
+        "column": "SUD3_NO2",
+        "outlier_count": 37
+      },
+      {
+        "column": "SUD3_NO",
+        "outlier_count": 256
+      }
+    ],
+    "iqr_interpolation_evidence": [
+      {
+        "column": "ASE_NO2",
+        "flagged_count": 43,
+        "eligible_count": 9,
+        "eligible_row_indices": [
+          418,
+          489,
+          562,
+          934,
+          936,
+          2121,
+          2617,
+          3215,
+          3682
+        ],
+        "examples": [
+          {
+            "row_index": 418,
+            "timestamp": "2021-11-07 19:00:00",
+            "observed": 28928.51011,
+            "neighbor_left": 28966.0625,
+            "neighbor_right": 28967.21875,
+            "estimated_linear": 28966.640625,
+            "iqr_lower": 28965.023910000004,
+            "iqr_upper": 29387.413589999996
+          },
+          {
+            "row_index": 489,
+            "timestamp": "2021-11-10 18:00:00",
+            "observed": 28925.38051,
+            "neighbor_left": 29037.67188,
+            "neighbor_right": 29012.65625,
+            "estimated_linear": 29025.164065,
+            "iqr_lower": 28965.023910000004,
+            "iqr_upper": 29387.413589999996
+          },
+          {
+            "row_index": 562,
+            "timestamp": "2021-11-13 19:00:00",
+            "observed": 28953.65257,
+            "neighbor_left": 28985.10938,
+            "neighbor_right": 29028.89063,
+            "estimated_linear": 29007.000005,
+            "iqr_lower": 28965.023910000004,
+            "iqr_upper": 29387.413589999996
+          }
+        ],
+        "rejected": {
+          "edge_or_adjacent": 30,
+          "irregular_time": 0,
+          "missing_neighbors": 0,
+          "unstable_neighbors": 4
+        },
+        "cadence_seconds": 3600.0,
+        "cadence_dominance": 1.0,
+        "rule": "isolated IQR flag; two finite unflagged immediate neighbors; regular time steps; neighbor difference <= 0.5 IQR"
+      },
+      {
+        "column": "ASE_NO",
+        "flagged_count": 226,
+        "eligible_count": 9,
+        "eligible_row_indices": [
+          10,
+          298,
+          309,
+          339,
+          679,
+          815,
+          1943,
+          2145,
+          3671
+        ],
+        "examples": [
+          {
+            "row_index": 10,
+            "timestamp": "2021-10-21 19:00:00",
+            "observed": 42663.51654,
+            "neighbor_left": 42326.39063,
+            "neighbor_right": 42417.8125,
+            "estimated_linear": 42372.101565000004,
+            "iqr_lower": 41003.85892499999,
+            "iqr_upper": 42565.634645
+          },
+          {
+            "row_index": 298,
+            "timestamp": "2021-11-02 19:00:00",
+            "observed": 42661.28768,
+            "neighbor_left": 41984.375,
+            "neighbor_right": 42084.3125,
+            "estimated_linear": 42034.34375,
+            "iqr_lower": 41003.85892499999,
+            "iqr_upper": 42565.634645
+          },
+          {
+            "row_index": 309,
+            "timestamp": "2021-11-03 06:00:00",
+            "observed": 42590.05331,
+            "neighbor_left": 42144.15625,
+            "neighbor_right": 42272.89063,
+            "estimated_linear": 42208.523440000004,
+            "iqr_lower": 41003.85892499999,
+            "iqr_upper": 42565.634645
+          }
+        ],
+        "rejected": {
+          "edge_or_adjacent": 203,
+          "irregular_time": 0,
+          "missing_neighbors": 0,
+          "unstable_neighbors": 14
+        },
+        "cadence_seconds": 3600.0,
+        "cadence_dominance": 1.0,
+        "rule": "isolated IQR flag; two finite unflagged immediate neighbors; regular time steps; neighbor difference <= 0.5 IQR"
+      },
+      {
+        "column": "ASE_CO",
+        "flagged_count": 103,
+        "eligible_count": 23,
+        "eligible_row_indices": [
+          298,
+          327,
+          370,
+          420,
+          442,
+          825,
+          827,
+          1343,
+          1352,
+          1943,
+          2049,
+          2111,
+          2211,
+          2375,
+          2711,
+          3059,
+          3143,
+          3359,
+          3479,
+          3551,
+          3623,
+          3671,
+          3682
+        ],
+        "examples": [
+          {
+            "row_index": 298,
+            "timestamp": "2021-11-02 19:00:00",
+            "observed": 41746.50919,
+            "neighbor_left": 41045.78125,
+            "neighbor_right": 41168.71875,
+            "estimated_linear": 41107.25,
+            "iqr_lower": 39136.44560499999,
+            "iqr_upper": 41650.90764500001
+          },
+          {
+            "row_index": 327,
+            "timestamp": "2021-11-04 00:00:00",
+            "observed": 41798.32813,
+            "neighbor_left": 40736.16085,
+            "neighbor_right": 40968.45864,
+            "estimated_linear": 40852.309745,
+            "iqr_lower": 39136.44560499999,
+            "iqr_upper": 41650.90764500001
+          },
+          {
+            "row_index": 370,
+            "timestamp": "2021-11-05 19:00:00",
+            "observed": 41848.54688,
+            "neighbor_left": 41605.09375,
+            "neighbor_right": 41605.50368,
+            "estimated_linear": 41605.298715,
+            "iqr_lower": 39136.44560499999,
+            "iqr_upper": 41650.90764500001
+          }
+        ],
+        "rejected": {
+          "edge_or_adjacent": 70,
+          "irregular_time": 0,
+          "missing_neighbors": 0,
+          "unstable_neighbors": 10
+        },
+        "cadence_seconds": 3600.0,
+        "cadence_dominance": 1.0,
+        "rule": "isolated IQR flag; two finite unflagged immediate neighbors; regular time steps; neighbor difference <= 0.5 IQR"
+      },
+      {
+        "column": "ASE_Ox",
+        "flagged_count": 18,
+        "eligible_count": 1,
+        "eligible_row_indices": [
+          825
+        ],
+        "examples": [
+          {
+            "row_index": 825,
+            "timestamp": "2021-11-24 18:00:00",
+            "observed": 28834.10938,
+            "neighbor_left": 28851.54688,
+            "neighbor_right": 28908.21324,
+            "estimated_linear": 28879.880060000003,
+            "iqr_lower": 28850.562505,
+            "iqr_upper": 29369.437505
+          }
+        ],
+        "rejected": {
+          "edge_or_adjacent": 15,
+          "irregular_time": 0,
+          "missing_neighbors": 0,
+          "unstable_neighbors": 2
+        },
+        "cadence_seconds": 3600.0,
+        "cadence_dominance": 1.0,
+        "rule": "isolated IQR flag; two finite unflagged immediate neighbors; regular time steps; neighbor difference <= 0.5 IQR"
+      },
+      {
+        "column": "ASE_T",
+        "flagged_count": 42,
+        "eligible_count": 2,
+        "eligible_row_indices": [
+          174,
+          3366
+        ],
+        "examples": [
+          {
+            "row_index": 174,
+            "timestamp": "2021-10-28 15:00:00",
+            "observed": 23.2394522,
+            "neighbor_left": 22.84197375,
+            "neighbor_right": 22.49273925,
+            "estimated_linear": 22.6673565,
+            "iqr_lower": 3.29278565,
+            "iqr_upper": 23.223942049999998
+          },
+          {
+            "row_index": 3366,
+            "timestamp": "2022-03-10 15:00:00",
+            "observed": 23.29032197,
+            "neighbor_left": 22.71410951,
+            "neighbor_right": 22.97860558,
+            "estimated_linear": 22.846357545,
+            "iqr_lower": 3.29278565,
+            "iqr_upper": 23.223942049999998
+          }
+        ],
+        "rejected": {
+          "edge_or_adjacent": 40,
+          "irregular_time": 0,
+          "missing_neighbors": 0,
+          "unstable_neighbors": 0
+        },
+        "cadence_seconds": 3600.0,
+        "cadence_dominance": 1.0,
+        "rule": "isolated IQR flag; two finite unflagged immediate neighbors; regular time steps; neighbor difference <= 0.5 IQR"
+      },
+      {
+        "column": "ASE_HR",
+        "flagged_count": 190,
+        "eligible_count": 2,
+        "eligible_row_indices": [
+          3055,
+          3344
+        ],
+        "examples": [
+          {
+            "row_index": 3055,
+            "timestamp": "2022-02-25 16:00:00",
+            "observed": 38.15454846,
+            "neighbor_left": 40.1799293,
+            "neighbor_right": 39.36479235,
+            "estimated_linear": 39.772360825,
+            "iqr_lower": 38.955990435,
+            "iqr_upper": 80.672630395
+          },
+          {
+            "row_index": 3344,
+            "timestamp": "2022-03-09 17:00:00",
+            "observed": 37.80852471,
+            "neighbor_left": 39.11429007,
+            "neighbor_right": 40.09005366,
+            "estimated_linear": 39.602171865,
+            "iqr_lower": 38.955990435,
+            "iqr_upper": 80.672630395
+          }
+        ],
+        "rejected": {
+          "edge_or_adjacent": 188,
+          "irregular_time": 0,
+          "missing_neighbors": 0,
+          "unstable_neighbors": 0
+        },
+        "cadence_seconds": 3600.0,
+        "cadence_dominance": 1.0,
+        "rule": "isolated IQR flag; two finite unflagged immediate neighbors; regular time steps; neighbor difference <= 0.5 IQR"
+      },
+      {
+        "column": "ASE_PA",
+        "flagged_count": 38,
+        "eligible_count": 2,
+        "eligible_row_indices": [
+          2655,
+          3290
+        ],
+        "examples": [
+          {
+            "row_index": 2655,
+            "timestamp": "2022-02-09 00:00:00",
+            "observed": 1838.498264,
+            "neighbor_left": 1031.139236,
+            "neighbor_right": 1030.713889,
+            "estimated_linear": 1030.9265625,
+            "iqr_lower": 995.6453120000001,
+            "iqr_upper": 1050.1133679999998
+          },
+          {
+            "row_index": 3290,
+            "timestamp": "2022-03-07 11:00:00",
+            "observed": 1826.404167,
+            "neighbor_left": 1024.692708,
+            "neighbor_right": 1023.195486,
+            "estimated_linear": 1023.944097,
+            "iqr_lower": 995.6453120000001,
+            "iqr_upper": 1050.1133679999998
+          }
+        ],
+        "rejected": {
+          "edge_or_adjacent": 36,
+          "irregular_time": 0,
+          "missing_neighbors": 0,
+          "unstable_neighbors": 0
+        },
+        "cadence_seconds": 3600.0,
+        "cadence_dominance": 1.0,
+        "rule": "isolated IQR flag; two finite unflagged immediate neighbors; regular time steps; neighbor difference <= 0.5 IQR"
+      },
+      {
+        "column": "SUD3_NO2",
+        "flagged_count": 37,
+        "eligible_count": 9,
+        "eligible_row_indices": [
+          418,
+          489,
+          585,
+          1462,
+          2025,
+          2145,
+          2216,
+          2723,
+          3118
+        ],
+        "examples": [
+          {
+            "row_index": 418,
+            "timestamp": "2021-11-07 19:00:00",
+            "observed": 119.1,
+            "neighbor_left": 106.6,
+            "neighbor_right": 106.0,
+            "estimated_linear": 106.3,
+            "iqr_lower": -36.7,
+            "iqr_upper": 111.3
+          },
+          {
+            "row_index": 489,
+            "timestamp": "2021-11-10 18:00:00",
+            "observed": 119.0,
+            "neighbor_left": 83.3,
+            "neighbor_right": 88.0,
+            "estimated_linear": 85.65,
+            "iqr_lower": -36.7,
+            "iqr_upper": 111.3
+          },
+          {
+            "row_index": 585,
+            "timestamp": "2021-11-14 18:00:00",
+            "observed": 122.5,
+            "neighbor_left": 103.4,
+            "neighbor_right": 86.3,
+            "estimated_linear": 94.85,
+            "iqr_lower": -36.7,
+            "iqr_upper": 111.3
+          }
+        ],
+        "rejected": {
+          "edge_or_adjacent": 27,
+          "irregular_time": 0,
+          "missing_neighbors": 0,
+          "unstable_neighbors": 1
+        },
+        "cadence_seconds": 3600.0,
+        "cadence_dominance": 1.0,
+        "rule": "isolated IQR flag; two finite unflagged immediate neighbors; regular time steps; neighbor difference <= 0.5 IQR"
+      },
+      {
+        "column": "SUD3_NO",
+        "flagged_count": 256,
+        "eligible_count": 13,
+        "eligible_row_indices": [
+          298,
+          363,
+          604,
+          1102,
+          1373,
+          1845,
+          1997,
+          2051,
+          2132,
+          2333,
+          2384,
+          2735,
+          3536
+        ],
+        "examples": [
+          {
+            "row_index": 298,
+            "timestamp": "2021-11-02 19:00:00",
+            "observed": 159.3,
+            "neighbor_left": 61.8,
+            "neighbor_right": 77.2,
+            "estimated_linear": 69.5,
+            "iqr_lower": -77.49999999999999,
+            "iqr_upper": 141.7
+          },
+          {
+            "row_index": 363,
+            "timestamp": "2021-11-05 12:00:00",
+            "observed": 152.8,
+            "neighbor_left": 115.1,
+            "neighbor_right": 125.6,
+            "estimated_linear": 120.35,
+            "iqr_lower": -77.49999999999999,
+            "iqr_upper": 141.7
+          },
+          {
+            "row_index": 604,
+            "timestamp": "2021-11-15 13:00:00",
+            "observed": 163.2,
+            "neighbor_left": 116.0,
+            "neighbor_right": 135.5,
+            "estimated_linear": 125.75,
+            "iqr_lower": -77.49999999999999,
+            "iqr_upper": 141.7
+          }
+        ],
+        "rejected": {
+          "edge_or_adjacent": 232,
+          "irregular_time": 0,
+          "missing_neighbors": 0,
+          "unstable_neighbors": 11
+        },
+        "cadence_seconds": 3600.0,
+        "cadence_dominance": 1.0,
+        "rule": "isolated IQR flag; two finite unflagged immediate neighbors; regular time steps; neighbor difference <= 0.5 IQR"
+      },
+      {
+        "column": "QDP_NO",
+        "flagged_count": 227,
+        "eligible_count": 15,
+        "eligible_row_indices": [
+          32,
+          117,
+          166,
+          458,
+          526,
+          848,
+          1042,
+          1126,
+          2015,
+          2145,
+          2279,
+          2311,
+          2350,
+          3143,
+          3647
+        ],
+        "examples": [
+          {
+            "row_index": 32,
+            "timestamp": "2021-10-22 17:00:00",
+            "observed": 115.1,
+            "neighbor_left": 95.9,
+            "neighbor_right": 100.4,
+            "estimated_linear": 98.15,
+            "iqr_lower": -54.900000000000006,
+            "iqr_upper": 114.70000000000002
+          },
+          {
+            "row_index": 117,
+            "timestamp": "2021-10-26 06:00:00",
+            "observed": 197.8,
+            "neighbor_left": 95.5,
+            "neighbor_right": 105.0,
+            "estimated_linear": 100.25,
+            "iqr_lower": -54.900000000000006,
+            "iqr_upper": 114.70000000000002
+          },
+          {
+            "row_index": 166,
+            "timestamp": "2021-10-28 07:00:00",
+            "observed": 129.9,
+            "neighbor_left": 87.4,
+            "neighbor_right": 85.7,
+            "estimated_linear": 86.55000000000001,
+            "iqr_lower": -54.900000000000006,
+            "iqr_upper": 114.70000000000002
+          }
+        ],
+        "rejected": {
+          "edge_or_adjacent": 204,
+          "irregular_time": 0,
+          "missing_neighbors": 0,
+          "unstable_neighbors": 8
+        },
+        "cadence_seconds": 3600.0,
+        "cadence_dominance": 1.0,
+        "rule": "isolated IQR flag; two finite unflagged immediate neighbors; regular time steps; neighbor difference <= 0.5 IQR"
+      },
+      {
+        "column": "QDP_NO2",
+        "flagged_count": 19,
+        "eligible_count": 7,
+        "eligible_row_indices": [
+          440,
+          935,
+          937,
+          1007,
+          2121,
+          2625,
+          3696
+        ],
+        "examples": [
+          {
+            "row_index": 440,
+            "timestamp": "2021-11-08 17:00:00",
+            "observed": 100.1,
+            "neighbor_left": 83.7,
+            "neighbor_right": 90.6,
+            "estimated_linear": 87.15,
+            "iqr_lower": -21.499999999999996,
+            "iqr_upper": 95.3
+          },
+          {
+            "row_index": 935,
+            "timestamp": "2021-11-29 08:00:00",
+            "observed": 102.6,
+            "neighbor_left": 82.7,
+            "neighbor_right": 90.6,
+            "estimated_linear": 86.65,
+            "iqr_lower": -21.499999999999996,
+            "iqr_upper": 95.3
+          },
+          {
+            "row_index": 937,
+            "timestamp": "2021-11-29 10:00:00",
+            "observed": 95.6,
+            "neighbor_left": 90.6,
+            "neighbor_right": 78.2,
+            "estimated_linear": 84.4,
+            "iqr_lower": -21.499999999999996,
+            "iqr_upper": 95.3
+          }
+        ],
+        "rejected": {
+          "edge_or_adjacent": 11,
+          "irregular_time": 0,
+          "missing_neighbors": 0,
+          "unstable_neighbors": 1
+        },
+        "cadence_seconds": 3600.0,
+        "cadence_dominance": 1.0,
+        "rule": "isolated IQR flag; two finite unflagged immediate neighbors; regular time steps; neighbor difference <= 0.5 IQR"
+      },
+      {
+        "column": "QDP_CO",
+        "flagged_count": 125,
+        "eligible_count": 20,
+        "eligible_row_indices": [
+          23,
+          117,
+          419,
+          441,
+          534,
+          844,
+          1343,
+          1346,
+          1943,
+          2049,
+          2111,
+          2145,
+          2375,
+          2711,
+          3154,
+          3359,
+          3479,
+          3623,
+          3647,
+          3695
+        ],
+        "examples": [
+          {
+            "row_index": 23,
+            "timestamp": "2021-10-22 08:00:00",
+            "observed": 0.749,
+            "neighbor_left": 0.505,
+            "neighbor_right": 0.522,
+            "estimated_linear": 0.5135000000000001,
+            "iqr_lower": -0.061,
+            "iqr_upper": 0.627
+          },
+          {
+            "row_index": 117,
+            "timestamp": "2021-10-26 06:00:00",
+            "observed": 0.672,
+            "neighbor_left": 0.295,
+            "neighbor_right": 0.376,
+            "estimated_linear": 0.3355,
+            "iqr_lower": -0.061,
+            "iqr_upper": 0.627
+          },
+          {
+            "row_index": 419,
+            "timestamp": "2021-11-07 20:00:00",
+            "observed": 0.692,
+            "neighbor_left": 0.58,
+            "neighbor_right": 0.613,
+            "estimated_linear": 0.5965,
+            "iqr_lower": -0.061,
+            "iqr_upper": 0.627
+          }
+        ],
+        "rejected": {
+          "edge_or_adjacent": 89,
+          "irregular_time": 0,
+          "missing_neighbors": 1,
+          "unstable_neighbors": 15
+        },
+        "cadence_seconds": 3600.0,
+        "cadence_dominance": 1.0,
+        "rule": "isolated IQR flag; two finite unflagged immediate neighbors; regular time steps; neighbor difference <= 0.5 IQR"
+      }
+    ],
+    "exact_duplicate_count": 0,
+    "time_quality": {
+      "column": "date",
+      "reversal_count": 0,
+      "repeated_timestamp_count": 0
+    },
+    "category_variants": [],
+    "cadence_quality": {
+      "column": "date",
+      "cadence_seconds": 3600.0,
+      "dominance": 1.0,
+      "missing_timestamp_estimate": 0,
+      "gap_examples": []
+    }
+  },
+  "temporal_config": {
+    "column": "date",
+    "temporal_kind": "datetime",
+    "target_dtype": "Datetime",
+    "format": null,
+    "sampling_rate_hz": null
+  },
+  "missing_values_policy": {
+    "downstream_completeness_requirement": "yes",
+    "affected_columns": [
+      {
+        "column": "ASE_NO2",
+        "missing_count": 421,
+        "null_count": 421,
+        "nan_count": 0,
+        "max_missing_run": 291
+      },
+      {
+        "column": "ASE_NO",
+        "missing_count": 292,
+        "null_count": 292,
+        "nan_count": 0,
+        "max_missing_run": 291
+      },
+      {
+        "column": "ASE_CO",
+        "missing_count": 317,
+        "null_count": 317,
+        "nan_count": 0,
+        "max_missing_run": 291
+      },
+      {
+        "column": "ASE_Ox",
+        "missing_count": 292,
+        "null_count": 292,
+        "nan_count": 0,
+        "max_missing_run": 291
+      },
+      {
+        "column": "ASE_T",
+        "missing_count": 292,
+        "null_count": 292,
+        "nan_count": 0,
+        "max_missing_run": 291
+      },
+      {
+        "column": "ASE_HR",
+        "missing_count": 292,
+        "null_count": 292,
+        "nan_count": 0,
+        "max_missing_run": 291
+      },
+      {
+        "column": "ASE_PA",
+        "missing_count": 292,
+        "null_count": 292,
+        "nan_count": 0,
+        "max_missing_run": 291
+      },
+      {
+        "column": "SUD3_NO2",
+        "missing_count": 220,
+        "null_count": 220,
+        "nan_count": 0,
+        "max_missing_run": 194
+      },
+      {
+        "column": "SUD3_NO",
+        "missing_count": 220,
+        "null_count": 220,
+        "nan_count": 0,
+        "max_missing_run": 194
+      },
+      {
+        "column": "QDP_NO",
+        "missing_count": 13,
+        "null_count": 13,
+        "nan_count": 0,
+        "max_missing_run": 4
+      },
+      {
+        "column": "QDP_NO2",
+        "missing_count": 13,
+        "null_count": 13,
+        "nan_count": 0,
+        "max_missing_run": 4
+      },
+      {
+        "column": "QDP_CO",
+        "missing_count": 87,
+        "null_count": 87,
+        "nan_count": 0,
+        "max_missing_run": 38
+      },
+      {
+        "column": "Location",
+        "missing_count": 291,
+        "null_count": 291,
+        "nan_count": 0,
+        "max_missing_run": 291
+      }
+    ],
+    "imputation_proposal_ids": [
+      "rec_1",
+      "rec_2",
+      "rec_3",
+      "rec_4",
+      "rec_5",
+      "rec_6",
+      "rec_7",
+      "rec_8",
+      "rec_9",
+      "rec_10",
+      "rec_11",
+      "rec_12",
+      "rec_13",
+      "rec_15"
+    ],
+    "approved_imputation_ids": [
+      "rec_1",
+      "rec_2",
+      "rec_3",
+      "rec_6",
+      "rec_8",
+      "rec_10",
+      "rec_12",
+      "rec_15"
+    ],
+    "decision": "Complete data required; approved imputation proposals may address some gaps. Completeness is not guaranteed."
+  },
+  "recommendations": [
+    {
+      "id": "rec_1",
+      "operation": "handle_missing",
+      "column": "ASE_NO2",
+      "reason": "421 valeurs manquantes (11.32 %), lacune max 291, 43 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : median.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "median"
+      },
+      "requires_clarification": false
+    },
+    {
+      "id": "rec_2",
+      "operation": "handle_missing",
+      "column": "ASE_NO",
+      "reason": "292 valeurs manquantes (7.85 %), lacune max 291, 226 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : forward.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "forward"
+      },
+      "requires_clarification": false
+    },
+    {
+      "id": "rec_3",
+      "operation": "handle_missing",
+      "column": "ASE_CO",
+      "reason": "317 valeurs manquantes (8.52 %), lacune max 291, 103 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : linear.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "linear"
+      },
+      "requires_clarification": false
+    },
+    {
+      "id": "rec_4",
+      "operation": "handle_missing",
+      "column": "ASE_Ox",
+      "reason": "292 valeurs manquantes (7.85 %), lacune max 291, 18 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "keep"
+      },
+      "requires_clarification": false
+    },
+    {
+      "id": "rec_5",
+      "operation": "handle_missing",
+      "column": "ASE_T",
+      "reason": "292 valeurs manquantes (7.85 %), lacune max 291, 42 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "keep"
+      },
+      "requires_clarification": false
+    },
+    {
+      "id": "rec_6",
+      "operation": "handle_missing",
+      "column": "ASE_HR",
+      "reason": "292 valeurs manquantes (7.85 %), lacune max 291, 190 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : drop.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "drop"
+      },
+      "requires_clarification": false
+    },
+    {
+      "id": "rec_7",
+      "operation": "handle_missing",
+      "column": "ASE_PA",
+      "reason": "292 valeurs manquantes (7.85 %), lacune max 291, 38 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "keep"
+      },
+      "requires_clarification": false
+    },
+    {
+      "id": "rec_8",
+      "operation": "handle_missing",
+      "column": "SUD3_NO2",
+      "reason": "220 valeurs manquantes (5.92 %), lacune max 194, 37 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : backward.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "backward"
+      },
+      "requires_clarification": false
+    },
+    {
+      "id": "rec_9",
+      "operation": "handle_missing",
+      "column": "SUD3_NO",
+      "reason": "220 valeurs manquantes (5.92 %), lacune max 194, 256 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "keep"
+      },
+      "requires_clarification": false
+    },
+    {
+      "id": "rec_10",
+      "operation": "handle_missing",
+      "column": "QDP_NO",
+      "reason": "13 valeurs manquantes (0.35 %), lacune max 4, 227 outliers IQR. Lacunes courtes avec valeurs IQR atypiques : médiane robuste. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "median"
+      },
+      "requires_clarification": false
+    },
+    {
+      "id": "rec_11",
+      "operation": "handle_missing",
+      "column": "QDP_NO2",
+      "reason": "13 valeurs manquantes (0.35 %), lacune max 4, 19 outliers IQR. Lacunes courtes avec valeurs IQR atypiques : médiane robuste. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Ajustement métier : keep.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "keep"
+      },
+      "requires_clarification": false
+    },
+    {
+      "id": "rec_12",
+      "operation": "handle_missing",
+      "column": "QDP_CO",
+      "reason": "87 valeurs manquantes (2.34 %), lacune max 38, 125 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : median.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "median"
+      },
+      "requires_clarification": false
+    },
+    {
+      "id": "rec_13",
+      "operation": "handle_missing",
+      "column": "Location",
+      "reason": "291 valeurs manquantes (7.82 %), lacune max 291, 0 outliers IQR. Catégorie : ne pas inventer de valeur sans connaître son sens. Le modèle exige des données complètes : décision métier nécessaire.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "keep"
+      },
+      "requires_clarification": false
+    },
+    {
+      "id": "rec_14",
+      "operation": "handle_outliers",
+      "column": "QDP_CO",
+      "parameters": {
+        "method": "iqr",
+        "action": "drop",
+        "factor": 1.5
+      },
+      "reason": "Suppression IQR explicitement demandée pour cette colonne.",
+      "risk": "Supprime des lignes entières et peut retirer des pics réels.",
+      "requires_clarification": false
+    },
+    {
+      "operation": "handle_missing",
+      "column": "ASE_T",
+      "parameters": {
+        "method": "linear"
+      },
+      "reason": "Traitement supplémentaire demandé pour obtenir des données complètes.",
+      "risk": "L'imputation peut déformer les mesures, surtout sur de longues lacunes.",
+      "id": "rec_15"
+    }
+  ],
+  "validated_recommendations": [
+    {
+      "id": "rec_1",
+      "operation": "handle_missing",
+      "column": "ASE_NO2",
+      "reason": "421 valeurs manquantes (11.32 %), lacune max 291, 43 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : median.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "median"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_2",
+      "operation": "handle_missing",
+      "column": "ASE_NO",
+      "reason": "292 valeurs manquantes (7.85 %), lacune max 291, 226 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : forward.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "forward"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_3",
+      "operation": "handle_missing",
+      "column": "ASE_CO",
+      "reason": "317 valeurs manquantes (8.52 %), lacune max 291, 103 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : linear.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "linear"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_4",
+      "operation": "handle_missing",
+      "column": "ASE_Ox",
+      "reason": "292 valeurs manquantes (7.85 %), lacune max 291, 18 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "keep"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_5",
+      "operation": "handle_missing",
+      "column": "ASE_T",
+      "reason": "292 valeurs manquantes (7.85 %), lacune max 291, 42 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "keep"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_6",
+      "operation": "handle_missing",
+      "column": "ASE_HR",
+      "reason": "292 valeurs manquantes (7.85 %), lacune max 291, 190 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : drop.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "drop"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_7",
+      "operation": "handle_missing",
+      "column": "ASE_PA",
+      "reason": "292 valeurs manquantes (7.85 %), lacune max 291, 38 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "keep"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_8",
+      "operation": "handle_missing",
+      "column": "SUD3_NO2",
+      "reason": "220 valeurs manquantes (5.92 %), lacune max 194, 37 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : backward.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "backward"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_9",
+      "operation": "handle_missing",
+      "column": "SUD3_NO",
+      "reason": "220 valeurs manquantes (5.92 %), lacune max 194, 256 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "keep"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_10",
+      "operation": "handle_missing",
+      "column": "QDP_NO",
+      "reason": "13 valeurs manquantes (0.35 %), lacune max 4, 227 outliers IQR. Lacunes courtes avec valeurs IQR atypiques : médiane robuste. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "median"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_11",
+      "operation": "handle_missing",
+      "column": "QDP_NO2",
+      "reason": "13 valeurs manquantes (0.35 %), lacune max 4, 19 outliers IQR. Lacunes courtes avec valeurs IQR atypiques : médiane robuste. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Ajustement métier : keep.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "keep"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_12",
+      "operation": "handle_missing",
+      "column": "QDP_CO",
+      "reason": "87 valeurs manquantes (2.34 %), lacune max 38, 125 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : median.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "median"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_13",
+      "operation": "handle_missing",
+      "column": "Location",
+      "reason": "291 valeurs manquantes (7.82 %), lacune max 291, 0 outliers IQR. Catégorie : ne pas inventer de valeur sans connaître son sens. Le modèle exige des données complètes : décision métier nécessaire.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "keep"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_14",
+      "operation": "handle_outliers",
+      "column": "QDP_CO",
+      "parameters": {
+        "method": "iqr",
+        "action": "drop",
+        "factor": 1.5
+      },
+      "reason": "Suppression IQR explicitement demandée pour cette colonne.",
+      "risk": "Supprime des lignes entières et peut retirer des pics réels.",
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "operation": "handle_missing",
+      "column": "ASE_T",
+      "parameters": {
+        "method": "linear"
+      },
+      "reason": "Traitement supplémentaire demandé pour obtenir des données complètes.",
+      "risk": "L'imputation peut déformer les mesures, surtout sur de longues lacunes.",
+      "id": "rec_15",
+      "technical_status": "valid",
+      "validation_errors": []
+    }
+  ],
+  "approved_recommendations": [
+    {
+      "id": "rec_1",
+      "operation": "handle_missing",
+      "column": "ASE_NO2",
+      "reason": "421 valeurs manquantes (11.32 %), lacune max 291, 43 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : median.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "median"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_2",
+      "operation": "handle_missing",
+      "column": "ASE_NO",
+      "reason": "292 valeurs manquantes (7.85 %), lacune max 291, 226 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : forward.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "forward"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_3",
+      "operation": "handle_missing",
+      "column": "ASE_CO",
+      "reason": "317 valeurs manquantes (8.52 %), lacune max 291, 103 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : linear.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "linear"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_6",
+      "operation": "handle_missing",
+      "column": "ASE_HR",
+      "reason": "292 valeurs manquantes (7.85 %), lacune max 291, 190 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : drop.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "drop"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_8",
+      "operation": "handle_missing",
+      "column": "SUD3_NO2",
+      "reason": "220 valeurs manquantes (5.92 %), lacune max 194, 37 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : backward.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "backward"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_10",
+      "operation": "handle_missing",
+      "column": "QDP_NO",
+      "reason": "13 valeurs manquantes (0.35 %), lacune max 4, 227 outliers IQR. Lacunes courtes avec valeurs IQR atypiques : médiane robuste. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "median"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_12",
+      "operation": "handle_missing",
+      "column": "QDP_CO",
+      "reason": "87 valeurs manquantes (2.34 %), lacune max 38, 125 outliers IQR. Lacunes longues ou nombreuses : imputation non justifiée automatiquement. Pics déclarés réels : les préserver ; IQR ne prouve pas une erreur. Le modèle exige des données complètes : décision métier nécessaire. Ajustement métier : median.",
+      "risk": "Une imputation peut modifier la distribution et les relations temporelles.",
+      "parameters": {
+        "method": "median"
+      },
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "id": "rec_14",
+      "operation": "handle_outliers",
+      "column": "QDP_CO",
+      "parameters": {
+        "method": "iqr",
+        "action": "drop",
+        "factor": 1.5
+      },
+      "reason": "Suppression IQR explicitement demandée pour cette colonne.",
+      "risk": "Supprime des lignes entières et peut retirer des pics réels.",
+      "requires_clarification": false,
+      "technical_status": "valid",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "operation": "handle_missing",
+      "column": "ASE_T",
+      "parameters": {
+        "method": "linear"
+      },
+      "reason": "Traitement supplémentaire demandé pour obtenir des données complètes.",
+      "risk": "L'imputation peut déformer les mesures, surtout sur de longues lacunes.",
+      "id": "rec_15",
+      "technical_status": "valid",
+      "validation_errors": []
+    }
+  ],
+  "clarification_answers": {
+    "question_1": "mesure",
+    "question_2": "pics réels",
+    "question_3": "ASE_NO2=median, QDP_CO=median, QDP_CO=outlier_drop, ASE_NO=forward, ASE_CO=linear, QDP_NO2=keep, SUD3_NO2=backward, ASE_HR=drop"
+  },
+  "business_interpretation": {
+    "missing": "mesure",
+    "outliers": "pics réels"
+  },
+  "summary": "Propositions fondées sur l’audit et les réponses métier, ajustables par l’utilisateur.",
+  "dataset_modified": false
+}
