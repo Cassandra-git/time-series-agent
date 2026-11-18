@@ -20,7 +20,7 @@ import os
 
 from langchain_core.tools import tool
 
-from src.services import plotting
+from services import plotting
 
 logger = logging.getLogger(__name__)
 
