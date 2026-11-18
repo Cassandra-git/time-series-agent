@@ -6,6 +6,8 @@ Large datasets are thinned out so that the figures stay light.
 
 from pathlib import Path
 
+from uuid import uuid4
+
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -93,10 +95,15 @@ def load_data(parquet_path, time_col=None, start_date=None, end_date=None):
 
     return df.sort_values(time_col)
 
+def save_figure(fig, output_dir, prefix="fig"):
+    """Write the figure as JSON and return the path."""
+    out = Path(output_dir)
+    out.mkdir(parents=True, exist_ok=True)
+    path = out / f"{prefix}_{uuid4().hex[:8]}.json"
+    path.write_text(fig.to_json(), encoding="utf-8")
+    return path
 
-# ============================================================
-# TIME SERIES
-# ============================================================
+# =========================== FIGURES ============================
 
 def plot_time_series(
     parquet_path,
@@ -141,11 +148,6 @@ def plot_time_series(
     )
     return fig
 
-
-# ============================================================
-# HISTOGRAM
-# ============================================================
-
 def plot_histogram(
     parquet_path,
     column,
@@ -171,35 +173,32 @@ def plot_histogram(
     )
     return fig
 
+def plot_boxplot(parquet_path, columns, time_col=None, start_date=None,
+                 end_date=None, group_by=None):
+    """Plot the distribution of one or more variables.
 
-# ============================================================
-# BOXPLOT
-# ============================================================
-
-def plot_boxplot(
-    parquet_path,
-    columns,
-    time_col=None,
-    start_date=None,
-    end_date=None,
-):
-    """Plot the distribution of one or more variables."""
+    group_by: categorical column (e.g. "Location"): one box per group,
+    with a single value column.
+    """
     df = load_data(parquet_path, time_col, start_date, end_date)
     check_value_columns(df, columns)
 
     fig = go.Figure()
 
-    for col in columns:
-        values = sample_rows(df[col].dropna())
-        fig.add_trace(go.Box(y=values, name=col, boxmean=True))
+    if group_by is None:
+        for col in columns:
+            values = sample_rows(df[col].dropna())
+            fig.add_trace(go.Box(y=values, name=col, boxmean=True))
+    else:
+        if len(columns) != 1:
+            raise ValueError("group_by needs exactly one value column.")
+        check_columns(df, [group_by])
+        for key, part in df.groupby(group_by, sort=True):
+            values = sample_rows(part[columns[0]].dropna())
+            fig.add_trace(go.Box(y=values, name=str(key), boxmean=True))
 
     fig.update_layout(title="Boxplot", yaxis_title="Value")
     return fig
-
-
-# ============================================================
-# SCATTER PLOT
-# ============================================================
 
 def plot_scatter(
     parquet_path,
@@ -229,11 +228,6 @@ def plot_scatter(
         yaxis_title=y_col,
     )
     return fig
-
-
-# ============================================================
-# CORRELATION HEATMAP
-# ============================================================
 
 def plot_correlation_heatmap(
     parquet_path,
