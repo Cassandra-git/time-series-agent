@@ -6,7 +6,7 @@ from pathlib import Path
 import polars as pl
 import pytest
 
-from src.services.preprocessing import run_preprocessing
+from services.preprocessing import run_preprocessing
 
 
 def _sha256(path: Path) -> str:

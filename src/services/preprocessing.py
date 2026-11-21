@@ -12,7 +12,7 @@ from uuid import uuid4
 
 import polars as pl
 
-from src.services.data_loader import load_lazy_dataset
+from services.data_loader import load_lazy_dataset
 
 
 def _is_temporal(dtype: pl.DataType) -> bool:
@@ -515,7 +515,7 @@ def run_preprocessing(
         )
 
     # Import here to avoid a circular import between tools and services.
-    from src.tools.cleaning_tools import (
+    from tools.cleaning_tools import (
         categories_tool,
         duplicates_tool,
         missing_values_tool,

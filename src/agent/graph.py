@@ -18,8 +18,8 @@ from datetime import timedelta
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import StateGraph, START, END
 from langgraph.types import Command, interrupt
-from src.services.data_loader import inspect_dataset, load_lazy_dataset
-from src.services.preprocessing import run_preprocessing
+from services.data_loader import inspect_dataset, load_lazy_dataset
+from services.preprocessing import run_preprocessing
 
 ALLOWED_OPERATIONS = {'parse_time', 'sort_time', 'handle_missing', 'handle_nan', 'interpolate', 'remove_duplicates', 'resample', 'handle_outliers', 'normalize_categories', 'regularize_timestamps'}
 TEMPORAL_TYPES = {'datetime': 'Datetime', 'date': 'Date', 'time': 'Time', 'unix_s': 'Int64', 'unix_ms': 'Int64', 'elapsed_s': 'Float64', 'sample_index': 'Int64', 'implicit': None, 'none': None}
@@ -940,12 +940,114 @@ def print_postprocessing_check(file_path: str, parquet_path: str, complete_requi
 
 
 # 17. Exécuter le parcours complet sans modifier la source.
+COMPLETENESS_ANSWERS = {'yes', 'no', 'unknown'}
+
+
+def file_sha256(file_path: str) -> str:
+    """Return the SHA256 of a file, used to prove the source is unchanged."""
+    with open(file_path, 'rb') as source:
+        return hashlib.file_digest(source, 'sha256').hexdigest()
+
+
+def ask_completeness(payload: dict) -> str:
+    """Ask whether downstream steps need data without null/NaN."""
+    print('\n' + payload['message'])
+    while True:
+        response = input(payload['question'] + ' (yes/no/unknown): ').strip().lower()
+        if response in COMPLETENESS_ANSWERS | {''}:
+            return response or 'unknown'
+        print('Answer yes, no or unknown.')
+
+
+def answer_interrupt_in_terminal(payload: dict):
+    """Answer one cleaning-workflow question in the terminal."""
+    request_type = payload.get('type')
+    if request_type == 'completeness_requirement':
+        return ask_completeness(payload)
+    if request_type == 'temporal_clarification':
+        while True:
+            answer = ask_temporal_answer(payload)
+            try:
+                validate_temporal_answer(answer, {'columns': payload['columns']})
+                return answer
+            except ValueError as error:
+                print(f'Invalid answer: {error}')
+    if request_type == 'cleaning_clarification':
+        return ask_cleaning_clarification(payload)
+    if request_type == 'cleaning_approval':
+        return ask_approval(payload)
+    raise ValueError(f'Unknown interruption: {request_type}')
+
+
+def export_cleaned_dataset(result: dict, file_path: str, original_hash: str, output_dir: str | Path) -> dict:
+    """Apply the approved operations and write the cleaned Parquet and the JSON report."""
+    invalid = [rec for rec in result.get('checked_proposals', []) if rec.get('technical_status') != 'valid' and rec.get('parameters', {}).get('method') != 'keep']
+    for rec in invalid:
+        print(f"[NON APPLICABLE] {rec['id']} : " + '; '.join(rec.get('validation_errors', [])))
+    approved = result.get('approved_operations', [])
+    report_path = export_recommendation_report(result, file_path)
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    if file_sha256(file_path) != original_hash:
+        raise RuntimeError('Source dataset changed after inspection.')
+    if approved:
+        processed = run_preprocessing(file_path=file_path, approved_recommendations=approved, expected_source_sha256=original_hash, temporal_config=result.get('time_settings', {}), output_dir=str(output_dir))
+        output_path = processed['output_file_path']
+    else:
+        output_path = output_dir / f'{Path(file_path).stem}_processed_{uuid.uuid4().hex[:12]}.parquet'
+        temporary = output_path.with_suffix('.tmp.parquet')
+        try:
+            load_lazy_dataset(file_path).sink_parquet(temporary)
+            if file_sha256(file_path) != original_hash:
+                raise RuntimeError('Source dataset changed during export.')
+            temporary.replace(output_path)
+        finally:
+            temporary.unlink(missing_ok=True)
+    check = print_postprocessing_check(file_path, str(output_path), bool(result.get('requires_complete_data')), approved)
+    if file_sha256(file_path) != original_hash:
+        raise RuntimeError('Le fichier source a changé pendant le traitement.')
+    return {
+        'parquet_path': str(output_path),
+        'report_path': str(report_path),
+        'approved_operations': approved,
+        'rejected_operations': [{'id': rec['id'], 'errors': rec.get('validation_errors', [])} for rec in invalid],
+        'check': check,
+    }
+
+
+def run_cleaning_workflow(file_path: str, output_dir: str | Path, answer, thread_id: str | None = None) -> dict:
+    """
+    Run audit -> questions -> approval -> export for one dataset.
+
+    `answer(payload)` receives each question (a dict with a 'type') and returns
+    the user's answer. The terminal passes answer_interrupt_in_terminal; the
+    conversational agent passes langgraph.types.interrupt so that the question
+    reaches the user interface.
+    """
+    original_hash = file_sha256(file_path)
+    response = answer({
+        'type': 'completeness_requirement',
+        'message': 'Missing values are often supported by analysis libraries and plots, but some downstream models require complete data.',
+        'question': 'Do downstream steps require complete data without null/NaN?',
+        'choices': sorted(COMPLETENESS_ANSWERS),
+    })
+    response = str(response or 'unknown').strip().lower()
+    if response not in COMPLETENESS_ANSWERS:
+        raise ValueError('Answer yes, no or unknown.')
+    graph = build_graph()
+    config = {'configurable': {'thread_id': thread_id or str(uuid.uuid4())}}
+    result = graph.invoke({'source_dataset_path': file_path, 'requires_complete_data': response == 'yes', 'completeness_response': response}, config=config)
+    while result.get('__interrupt__'):
+        payload = result['__interrupt__'][0].value
+        result = graph.invoke(Command(resume=answer(payload)), config=config)
+    return export_cleaned_dataset(result, file_path, original_hash, output_dir)
+
+
 def main():
     """
     Run the data preparation and cleaning approval stage in the terminal.
 
-    The dataset is automatically located in dataset/sample/.
-    Each team member provides their own Ollama URL.
+    The dataset is automatically located in datasets/sample/.
     """
     print('=== Data analysis agent: preparation stage ===')
     project_root = Path(__file__).resolve().parents[3]
@@ -962,71 +1064,10 @@ def main():
         raise FileNotFoundError(f'No supported dataset found in {sample_dir}')
     if len(datasets) > 1:
         raise ValueError('Multiple datasets found in dataset/sample/. Keep only one dataset for automatic selection.')
-    file_path = str(datasets[0])
-    with open(file_path, 'rb') as source:
-        original_hash = hashlib.file_digest(source, 'sha256').hexdigest()
     print(f'\nDataset detected: {datasets[0].name}')
-    graph = build_graph()
-    config = {'configurable': {'thread_id': str(uuid.uuid4())}}
-    print('\nMissing values are often supported by analysis libraries and plots, but some downstream models require complete data.')
-    while True:
-        response = input('Do downstream steps require complete data without null/NaN? (yes/no/unknown): ').strip().lower()
-        if response in {'yes', 'no', 'unknown', ''}:
-            break
-        print('Answer yes, no or unknown.')
-    result = graph.invoke({'source_dataset_path': file_path, 'requires_complete_data': response == 'yes', 'completeness_response': response or 'unknown'}, config=config)
-    while result.get('__interrupt__'):
-        payload = result['__interrupt__'][0].value
-        request_type = payload.get('type')
-        if request_type == 'temporal_clarification':
-            report = graph.get_state(config).values['quality_audit']
-            while True:
-                answer = ask_temporal_answer(payload)
-                try:
-                    validate_temporal_answer(answer, report)
-                    break
-                except ValueError as error:
-                    print(f'Invalid answer: {error}')
-        elif request_type == 'cleaning_clarification':
-            answer = ask_cleaning_clarification(payload)
-        elif request_type == 'cleaning_approval':
-            answer = ask_approval(payload)
-        else:
-            raise ValueError(f'Unknown interruption: {request_type}')
-        result = graph.invoke(Command(resume=answer), config=config)
-    invalid = [rec for rec in result.get('checked_proposals', []) if rec.get('technical_status') != 'valid' and rec.get('parameters', {}).get('method') != 'keep']
-    for rec in invalid:
-        print(f"[NON APPLICABLE] {rec['id']} : " + '; '.join(rec.get('validation_errors', [])))
-    approved = result.get('approved_operations', [])
-    report_path = export_recommendation_report(result, file_path)
-    output_dir = sample_dir.parent / 'processed'
-    output_dir.mkdir(parents=True, exist_ok=True)
-    with open(file_path, 'rb') as source:
-        current_hash = hashlib.file_digest(source, 'sha256').hexdigest()
-    if current_hash != original_hash:
-        raise RuntimeError('Source dataset changed after inspection.')
-    if approved:
-        processed = run_preprocessing(file_path=file_path, approved_recommendations=approved, expected_source_sha256=original_hash, temporal_config=result.get('time_settings', {}), output_dir=str(output_dir))
-        output_path = processed['output_file_path']
-    else:
-        output_path = output_dir / f'{Path(file_path).stem}_processed_{uuid.uuid4().hex[:12]}.parquet'
-        temporary = output_path.with_suffix('.tmp.parquet')
-        try:
-            load_lazy_dataset(file_path).sink_parquet(temporary)
-            with open(file_path, 'rb') as source:
-                current_hash = hashlib.file_digest(source, 'sha256').hexdigest()
-            if current_hash != original_hash:
-                raise RuntimeError('Source dataset changed during export.')
-            temporary.replace(output_path)
-        finally:
-            temporary.unlink(missing_ok=True)
-    print_postprocessing_check(file_path, str(output_path), bool(result.get('requires_complete_data')), approved)
-    with open(file_path, 'rb') as source:
-        final_hash = hashlib.file_digest(source, 'sha256').hexdigest()
-    if final_hash != original_hash:
-        raise RuntimeError('Le fichier source a changé pendant le traitement.')
-    print(f'Parquet : {output_path}')
-    print(f'Rapport JSON : {report_path}')
+    outcome = run_cleaning_workflow(str(datasets[0]), sample_dir.parent / 'processed', answer_interrupt_in_terminal)
+    print(f"Parquet : {outcome['parquet_path']}")
+    print(f"Rapport JSON : {outcome['report_path']}")
     print('Source inchangée (SHA256 vérifié).')
 
 if __name__ == '__main__':

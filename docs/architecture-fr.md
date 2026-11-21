@@ -48,43 +48,39 @@ Environnement virtuel Python local contenant l'interpréteur et les dépendances
 
 Il doit être exclu de Git.
 
-### `src/ts_agent/`
+### `src/`
 
-Package Python principal contenant la logique applicative et l'agent IA.
+Code Python principal. `pyproject.toml` installe ses trois packages (`agent`, `tools`, `services`) : on les importe directement (`from services.statistics import ...`), sans préfixe `src.`.
 
-- `__init__.py` : initialise le package Python.
-- `config.py` : centralise les paramètres, notamment l'adresse Ollama et le modèle utilisé.
-
-### `src/ts_agent/agent/`
+### `src/agent/`
 
 Contient la construction et l'orchestration de l'agent.
 
-- `__init__.py` : initialise le package.
-- `builder.py` : initialise le LLM, enregistre les tools et construit l'agent.
-- `graph.py` : définit les workflows LangGraph personnalisés et la gestion des états si nécessaire.
-- `prompts.py` : contient les prompts système et les instructions de l'agent.
+- `config.py` : centralise les paramètres lus dans l'environnement (`OLLAMA_HOST`, `OLLAMA_MODEL`, dossiers de sortie, nombre maximal d'appels d'outils).
+- `builder.py` : initialise le LLM (`ChatOllama`), enregistre les tools, construit l'agent ReAct LangGraph (`create_react_agent`) avec un état et une mémoire de conversation, et fournit `AgentSession`, utilisée par la CLI et plus tard par Streamlit.
+- `graph.py` : workflow LangGraph de nettoyage guidé (audit, questions métier, validation humaine, export Parquet). Il est lancé par le tool `clean_dataset` et peut aussi s'exécuter seul dans le terminal.
+- `prompts.py` : contient le prompt système et le contexte du dataset actif.
 
-### `src/ts_agent/tools/`
+### `src/tools/`
 
 Contient les interfaces accessibles au LLM.
 
-- `__init__.py` : initialise le package.
-- `cleaning_tools.py` : outils de chargement et d'inspection des données.
-- `analysis_tools.py` : outils statistiques, de détection d'anomalies et de prévision.
+- `agent_tools.py` : catalogue des tools donnés à l'agent. Ils lisent le dataset actif dans l'état de l'agent, donc le LLM n'a jamais à écrire de chemin de fichier.
+- `cleaning_tools.py` : outils d'inspection et de nettoyage des données.
+- `analysis_tools.py` : outils statistiques.
 - `visualisation_tools.py` : outils de génération de visualisations.
 
 Les tools valident les paramètres, appellent les services appropriés et renvoient les résultats à l'agent.
 
-### `src/ts_agent/services/`
+### `src/services/`
 
 Contient les fonctions Python indépendantes du framework d'agent.
 
-- `__init__.py` : initialise le package.
-- `data_loader.py` : charge et valide les fichiers CSV.
+- `data_loader.py` : charge, valide et convertit en Parquet les fichiers CSV, Excel et Parquet.
 - `preprocessing.py` : nettoie les données, traite les valeurs manquantes et prépare les dates.
 - `statistics.py` : calcule les statistiques descriptives.
-- `anomalies.py` : implémente les algorithmes de détection d'anomalies.
-- `forecasting.py` : implémente les méthodes de prévision.
+- `anomalies.py` : implémente les algorithmes de détection d'anomalies (à venir).
+- `forecasting.py` : implémente les méthodes de prévision (à venir).
 - `plotting.py` : génère les graphiques avec Plotly.
 
 ### `app/`
@@ -93,11 +89,12 @@ Contient l'interface utilisateur.
 
 - `streamlit_app.py` : gère l'importation des fichiers, les questions, l'affichage de la conversation et les visualisations.
 
-### `data/`
+### `datasets/`
 
 Contient les jeux de données de développement et de démonstration.
 
-- `sample/` : contient les fichiers csv de données
+- `sample/` : contient les fichiers CSV de données.
+- `processed/` : fichiers Parquet convertis ou nettoyés par l'agent (non versionnés).
 
 Les données privées, volumineuses ou générées ne doivent pas être publiées.
 
@@ -113,8 +110,8 @@ Contient les tests automatisés.
 
 Contient la documentation du projet.
 
-- `architecture.md` : documentation de l'architecture en anglais.
-- `architecture.fr.md` : documentation de l'architecture en français.
+- `architecture-en.md` : documentation de l'architecture en anglais.
+- `architecture-fr.md` : documentation de l'architecture en français.
 
 ### `experiments/`
 
@@ -149,8 +146,14 @@ Le code expérimental ne doit pas être nécessaire au fonctionnement de l'appli
 
 **Développement progressif :** commencer par le chargement CSV et les statistiques avant les workflows avancés, les prévisions et Docker.
 
-## 5. Remarque sur LangGraph
+## 5. Fonctionnement de l'agent
 
-`builder.py` peut utiliser directement l'implémentation des agents LangChain, qui repose déjà sur LangGraph. Le fichier `graph.py` devient utile lorsqu'un workflow personnalisé nécessite des états, des transitions ou une orchestration particulière.
+`builder.py` utilise l'agent ReAct de LangGraph : le LLM choisit un tool, LangGraph l'exécute, puis renvoie le résultat au LLM, jusqu'à ce que celui-ci réponde sans appeler de tool.
 
-Les modules décrivent l'architecture cible et pourront être développés progressivement.
+- **État :** en plus des messages, l'état contient le fichier source et le Parquet actif (`dataset_path`). `load_dataset` et `clean_dataset` mettent à jour cet état ; les autres tools le lisent.
+- **Mémoire :** un checkpointer conserve l'état par `thread_id`. Une `AgentSession` correspond à une conversation multi-tours.
+- **Validation humaine :** `clean_dataset` lance le workflow de `graph.py`. Chaque question de ce workflow passe par `interrupt()` : l'agent se met en pause, l'interface affiche la question, puis `AgentSession.resume(réponse)` le relance.
+- **Erreurs :** une erreur de paramètre dans un tool (colonne inconnue, date invalide, etc.) est renvoyée au LLM, qui peut corriger son appel.
+- **Tests :** `tests/test_agent.py` remplace Qwen par un modèle scripté, ce qui permet de tester l'assemblage sans Ollama.
+
+Les modules d'anomalies et de prévision seront ajoutés progressivement.

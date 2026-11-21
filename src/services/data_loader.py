@@ -23,6 +23,33 @@ def scan_dataset(path: str | Path) -> pl.LazyFrame:
 
     return pl.scan_parquet(path)
 
+def convert_to_parquet(file_path: str | Path, output_dir: str | Path) -> Path:
+    """Return a Parquet copy of a CSV/Excel file (a Parquet file is returned as is).
+
+    The copy is named after the content hash, so loading the same file twice
+    reuses it. The source file is never modified.
+    """
+    import hashlib
+
+    path = Path(file_path)
+    if not path.is_file():
+        raise FileNotFoundError(f"Dataset not found: {file_path}")
+    if path.suffix.lower() == ".parquet":
+        return path
+    with open(path, "rb") as source:
+        digest = hashlib.file_digest(source, "sha256").hexdigest()[:12]
+    output = Path(output_dir) / f"{path.stem}_raw_{digest}.parquet"
+    if not output.is_file():
+        output.parent.mkdir(parents=True, exist_ok=True)
+        temporary = output.with_suffix(".tmp.parquet")
+        try:
+            load_lazy_dataset(str(path)).sink_parquet(temporary)
+            temporary.replace(output)
+        finally:
+            temporary.unlink(missing_ok=True)
+    return output
+
+
 def detect_csv_separator(file_path: str) -> str:
     """Detect the CSV separator from the header."""
     with open(file_path, "r", encoding="utf-8-sig") as file:

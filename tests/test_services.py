@@ -4,8 +4,8 @@ from pathlib import Path
 
 import pytest
 
-from src.services.data_loader import inspect_dataset
-from src.tools.cleaning_tools import inspect_dataset_tool
+from services.data_loader import inspect_dataset
+from tools.cleaning_tools import inspect_dataset_tool
 
 
 def _sample_dataset() -> Path:

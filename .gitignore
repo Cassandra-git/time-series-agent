@@ -102,3 +102,9 @@ docker-compose.override.yml
 # ==========================================
 data/raw/ 
 data/processed/
+# ==========================================
+# Agent outputs (charts, converted / cleaned datasets, audit reports)
+# ==========================================
+outputs/
+datasets/processed/
+datasets/sample/audit_reports/

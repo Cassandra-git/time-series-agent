@@ -5,8 +5,8 @@ from __future__ import annotations
 import polars as pl
 from langchain_core.tools import tool
 
-from src.services.data_loader import inspect_dataset
-from src.services.preprocessing import (
+from services.data_loader import inspect_dataset
+from services.preprocessing import (
     handle_missing,
     handle_outliers,
     normalize_categories,

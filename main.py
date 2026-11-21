@@ -1,45 +1,69 @@
+"""Command-line interface of the time series agent.
+
+    uv run python main.py --dataset datasets/sample/ASE4.csv
+    uv run python main.py --dataset datasets/sample/ASE4.csv "Quelle est la moyenne de ASE_T ?"
+
+Without a question, starts a multi-turn conversation (type "exit" to quit).
+"""
+
 import argparse
 import json
-import os
 from pathlib import Path
 
-from ollama import Client
+from agent.builder import AgentSession, Turn, build_agent
+from agent.config import Settings
+from agent.graph import answer_interrupt_in_terminal
 
-from agent.builder import answer_question
+
+def run_turn(session: AgentSession, question: str, trace: list | None) -> Turn:
+    turn = session.send(question)
+    calls = list(turn.tool_calls)
+    figures = list(turn.figures)
+    while turn.question:  # the cleaning workflow asks the user in the terminal
+        turn = session.resume(answer_interrupt_in_terminal(turn.question))
+        calls += turn.tool_calls
+        figures += turn.figures
+    for call in calls:
+        print(f"  [outil] {call['tool']}({json.dumps(call['arguments'], ensure_ascii=False)})")
+    print(f"\n{turn.answer}")
+    for figure in figures:
+        print(f"  [graphique] {figure}")
+    if trace is not None:
+        trace.append({"question": question, "tool_calls": calls, "figures": figures, "answer": turn.answer})
+    return turn
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--trace", type=Path, help="Write the run and final answer to a JSON file.")
-    parser.add_argument("--dataset", help="Path to the Parquet file to analyze.")
-    parser.add_argument(
-        "question", nargs="?", default="Donne moi la définition d'une analyse de données"
-    )
+    parser = argparse.ArgumentParser(description="Time series analysis agent (Qwen + Ollama).")
+    parser.add_argument("--dataset", help="CSV, Excel or Parquet file to analyse.")
+    parser.add_argument("--trace", type=Path, help="Write questions, tool calls and answers to a JSON file.")
+    parser.add_argument("question", nargs="?", help="Ask one question and exit.")
     args = parser.parse_args()
-    client = Client()
-    model = os.getenv("OLLAMA_MODEL", "qwen3:8b")
 
-    tool_calls = [] if args.trace else None
+    settings = Settings.from_env()
+    session = AgentSession(build_agent(settings), settings)
     if args.dataset:
-        answer = answer_question(
-            args.question, args.dataset, client=client, model=model, tool_trace=tool_calls
-        )
-    else:
-        response = client.chat(
-            model=model, messages=[{"role": "user", "content": args.question}]
-        )
-        answer = response.message.content
+        session.load_dataset(args.dataset)
+    print(f"Modèle : {settings.ollama_model} @ {settings.ollama_host}")
 
-    if args.trace:
-        trace = {
-            "question": args.question,
-            "dataset": args.dataset,
-            "model": model,
-            "tool_calls": tool_calls,
-            "answer": answer,
-        }
-        args.trace.write_text(json.dumps(trace, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(answer)
+    trace = [] if args.trace else None
+    try:
+        if args.question:
+            run_turn(session, args.question, trace)
+        else:
+            print("Posez vos questions (exit pour quitter).")
+            while True:
+                try:
+                    question = input("\n> ").strip()
+                except EOFError:
+                    break
+                if question.lower() in {"exit", "quit", "q"}:
+                    break
+                if question:
+                    run_turn(session, question, trace)
+    finally:
+        if args.trace:
+            args.trace.write_text(json.dumps(trace, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":
