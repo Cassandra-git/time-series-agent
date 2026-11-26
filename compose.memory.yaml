@@ -1,0 +1,59 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    environment:
+      OLLAMA_HOST: 0.0.0.0:11434
+    volumes:
+      - ollama_models:/root/.ollama
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - OLLAMA_HOST=http://127.0.0.1:11434 ollama list > /dev/null
+      interval: 2s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+
+  model-init:
+    image: ollama/ollama:latest
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen3:8b}
+    depends_on:
+      ollama:
+        condition: service_healthy
+    entrypoint: ["/bin/sh", "-ec"]
+    command:
+      - |
+        if ollama show "$$OLLAMA_MODEL" > /dev/null 2>&1; then
+          printf 'Modèle déjà disponible : %s\n' "$$OLLAMA_MODEL"
+        else
+          ollama pull "$$OLLAMA_MODEL"
+        fi
+
+  chat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: "${CHAT_UID:-1000}:${CHAT_GID:-1000}"
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen3:8b}
+    depends_on:
+      ollama:
+        condition: service_healthy
+      model-init:
+        condition: service_completed_successfully
+    volumes:
+      - ./runtime:/app/runtime
+    command:
+      - python
+      - -m
+      - agent.cli
+      - --database
+      - /app/runtime/conversations.sqlite
+    stdin_open: true
+    tty: true
+
+volumes:
+  ollama_models:
